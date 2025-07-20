@@ -39,6 +39,7 @@ This is the official PyTorch implementation of the paper **"See the Forest and t
 > *48GB is enough to train and evaluate the full Synergos-VQA, if your GPU has a VRAM lower than 40GB, please use the 3B MLLMs as the external engine*
 
 ## 📂 Project Structure
+```bash
 📂 Synergos-VQA/
 ├── configs/              # .yaml configuration files for experiments
 ├── data/                 # Placeholder for datasets
@@ -53,9 +54,9 @@ This is the official PyTorch implementation of the paper **"See the Forest and t
 ├── checkpoints/          # Directory for saving/loading model weights and prototype library
 ├── train.py              # Main script for end-to-end training
 ├── evaluate.py           # Main script for end-to-end evaluation
-├── requirements.txt      # Project dependencies
+├── requirements.yaml      # Project dependencies
 └── README.md             # This file
-
+```
 ## ⚙️ Installation
 
 1.  **Clone the repository:**
