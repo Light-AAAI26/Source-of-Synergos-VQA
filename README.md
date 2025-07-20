@@ -1,154 +1,146 @@
-# Source-of-Synergos-VQA
-This repository contains the reletive code for our AAAI-26 submission.
 # 🌲 Synergos-VQA 🌳
 
-This is the official PyTorch implementation of the paper **"See the Forest and the Trees: A Synergistic Reasoning Framework for Knowledge-Based Visual Question Answering"**. **Synergos-VQA** addresses the uni-dimensional evidence bottleneck in Knowledge-Based Visual Question Answering (KBVQA). We propose a synergistic reasoning framework that achieves a deeper and more robust visual understanding by concurrently generating and fusing three complementary evidence streams at inference time: **Holistic Evidence**, **Structural Evidence**, and **Causal Evidence**.
-<img width="5063" height="2527" alt="Fig2" src="https://github.com/user-attachments/assets/8f96d0d6-fcaa-45f3-ae29-4bc035d7e37a" />
+This is the official PyTorch implementation of the paper **"See the Forest and the Trees: A Synergistic Reasoning Framework for Knowledge-Based Visual Question Answering"**. This repository contains the complete end-to-end code to reproduce our results, including the online generation of all evidence streams described in our work, this project will be updated more user-friendly persistently.
 
-
+<img width="5063" height="2527" alt="Fig2" src="https://github.com/user-attachments/assets/1d910920-0264-489a-b274-9427e543bd52" />
 
 ## 📋 Table of Contents
 
 - [✨ Features](#-features)
-- [⚠️ Hardware Requirements](#️-hardware-requirements)
-- [📂 Project Structure](#-project-structure)
-- [⚙️ Installation](#️-installation)
+- [⚙️ Installation & Setup](#️-installation--setup)
 - [🚀 End-to-End Reproduction Workflow](#-end-to-end-reproduction-workflow)
   - [Step 1: Download Datasets](#step-1-download-datasets)
   - [Step 2: Build the Prototype Library (Offline)](#step-2-build-the-prototype-library-offline)
   - [Step 3: Train the Full Model](#step-3-train-the-full-model)
   - [Step 4: Evaluate the Model](#step-4-evaluate-the-model)
-- [📓 Demo Notebook](#-demo-notebook)
-- [🤝 Contributing](#-contributing)
-
+- [📂 Project Structure](#-project-structure)
+- [🤝 Contributing](#️-contributing)
 
 ## ✨ Features
 
-- 💡 Full implementation of the **Synergos-VQA** framework, featuring its three core evidence-generation tracks.
-- 🤖 Plug-and-play modules for **Holistic Scene Analysis**, **Structural Backbone Reasoning**, and a **Causal Robustness Probe**.
-- 🔄 An efficient multi-source evidence fusion module based on **Fusion-in-Decoder (FiD) / T5**.
-- 🏆 Complete scripts to reproduce the state-of-the-art (SOTA) results on benchmarks like **OK-VQA**, **A-OKVQA**, and **ScienceQA**.
-- 🔌 Demonstrates the framework's capability as a model-agnostic toolkit to enhance the reasoning of various MLLMs.
+- 💡 Full end-to-end implementation of the **Synergos-VQA** framework.
+- 🤖 Includes modules for online **Holistic, Structural, and Causal** evidence generation.
+- 🔄 Implements a **Synergistic Decision Module** using a Fusion-in-Decoder (FiD) / T5 architecture to fuse all generated evidence.
+- 🏆 Provides all necessary scripts to train our model from scratch and reproduce the SOTA results on **OK-VQA**.
 
-## ⚠️ Hardware Requirements
+## ⚙️ Installation & Setup (Detailed Guide)
+This guide provides step-by-step instructions to create a suitable environment for running this project. We offer two recommended methods for environment management: venv (standard Python) and conda (popular in the scientific community).
 
-> **Important:** Training and evaluating the full Synergos-VQA pipeline is computationally intensive due to the online evidence generation by large multimodal models.
-> - **Recommended GPU:** NVIDIA A100 (80GB) or a comparable GPU with at least 48GB of VRAM.
-> - **Recommended RAM:** At least 128GB of system RAM.
->
-> *48GB is enough to train and evaluate the full Synergos-VQA, if your GPU has a VRAM lower than 40GB, please use the 3B MLLMs as the external engine*
+Step 1: Clone the Repository
+First, clone this repository to your local machine:
 
-## 📂 Project Structure
-```bash
-📂 Synergos-VQA/
-├── configs/              # .yaml configuration files for experiments
-├── data/                 # Placeholder for datasets
-├── notebooks/            # Jupyter Notebooks for analysis and demos (demo.ipynb)
-├── pipelines/            # Offline pipeline scripts (e.g., build_prototype_library.py)
-├── scripts/              # Bash scripts for running full experiments
-├── src/                  # Core source code
-│   ├── evidence_generator/ # Implementation of the three evidence generators
-│   ├── fusion_module/      # Implementation of the FiD/T5 fusion module
-│   ├── data_loader.py    # Data loaders
-│   └── utils.py          # Utility functions
-├── train.py              # Main script for training
-├── test.py               # Main script for evaluation
-├── train.sh              # Bash script for launching training
-├── test.sh               # Bash script for launching evaluation
-├── requirements.txt      # Project dependencies
-└── README.md             # This file
+Step 2: Create and Activate the Environment
+Choose one of the following options.
+
+Option A: Using venv (Recommended for Simplicity)
+
+This method uses Python's built-in environment manager.
+
+```Bash
+
+# Create a virtual environment using Python 3.10
+python3.10 -m venv venv
+
+# Activate the environment
+# On Linux/macOS:
+source venv/bin/activate
+# On Windows:
+# venv\Scripts\activate
 ```
-## ⚙️ Installation
+You will see (venv) at the beginning of your terminal prompt, indicating the environment is active.
 
-1.  **Clone the repository:**
+Option B: Using conda
 
-2.  **Create and activate a virtual environment:**
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
+If you have Anaconda or Miniconda installed, you can create a conda environment.
 
-3.  **Install dependencies:**
-    *Please ensure you have a compatible version of PyTorch and CUDA installed for your system.*
-    ```bash
-    pip install -r requirements.txt
-    ```
+```Bash
+
+# Create a new conda environment named "synergos_vqa" with Python 3.10
+conda create -n synergos_vqa python=3.10 -y
+
+# Activate the environment
+conda activate synergos_vqa
+```
+You will see (synergos_vqa) at the beginning of your terminal prompt.
+
+Step 3: Install PyTorch with CUDA Support
+This is a critical step. The version of PyTorch must match your system's CUDA driver. Our project was tested with CUDA 12.1 and PyTorch 2.1.0.
+
+Important: We strongly recommend visiting the official PyTorch website to get the precise installation command for your specific system configuration.
+
+For our verified environment (CUDA 12.1), the command is:
+
+```Bash
+
+# For CUDA 12.1
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
+Step 4: Install Other Dependencies
+Once PyTorch is installed correctly, install all other required packages from the requirements.txt file. Make sure the requirements.txt file is in your root directory.
+
+```Bash
+
+pip install -r requirements.txt
+```
+Step 5: Verify the Installation (Optional but Recommended)
+To ensure everything is set up correctly, you can run the following Python commands:
+
+```Bash
+
+python -c "import torch; print('PyTorch version:', torch.__version__); print('CUDA available:', torch.cuda.is_available()); print('Device name:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'N/A')"
+```
+You should see an output similar to this, confirming that PyTorch can detect your GPU:
+
+PyTorch version: 2.1.0
+CUDA available: True
+Device name: NVIDIA A100-SXM4-80GB
+Environment Summary
 
 ## 🚀 End-to-End Reproduction Workflow
+Step 1: Download Datasets
+Please download the required raw datasets according to our data_README.md (e.g., OK-VQA images and annotations, COCO images) and place them in a directory, for example, ./data/. Update the paths in the configuration files in the configs/ directory accordingly.
 
-Follow these steps to reproduce the results from scratch.
-
-### Step 1: Download Datasets
-
-Please download the required datasets and place them in the `./data` directory. You will need:
-- **OK-VQA**
-- **A-OKVQA**
-- **ScienceQA**
-- **COCO (for Prototype Library)**
-
-Your `./data` directory should look something like this:
-data/
-├── okvqa/
-│   ├── train2014/
-│   ├── val2014/
-│   └── ...
-└── coco/
-├── train2017/
-├── val2017/
-└── ...
-
-
-### Step 2: Build the Prototype Library (Offline)
-
+Step 2: Build the Prototype Library (Offline)
 This step uses the COCO dataset to build the prototype library required for the Structural Backbone Reasoning module.
 
-```bash
-python3 pipelines/build_prototype_library.py \
-    --corpus_path ./data/coco \
-    --output_path ./checkpoints/prototype_library.pkl
 ```
-This will generate the prototype_library.pkl file inside the checkpoints directory.
-
+# This script (e.g., library.py or a new pipelines/build_prototype_library.py) 
+# should be run to generate the prototype_library.pkl
+python src/library.py --coco_path ./data/coco --output_path ./checkpoint/prototype_library.pkl
+```
 Step 3: Train the Full Model
-This command launches the end-to-end training process. For each batch, it will perform online evidence generation before feeding the data to the decision module for training.
-
-```Bash
-
-# Example for training on OK-VQA
-python3 train.py --config configs/synergos_okvqa_train.yaml
-Training logs and model checkpoints will be saved to the directory specified in your config file.
+This command launches the end-to-end training process, which performs online evidence generation for each batch before training the decision module.
+```
+# Ensure your train.sh script is configured with the correct paths and parameters
+bash train.sh
 ```
 Step 4: Evaluate the Model
-4a. Evaluate Your Own Trained Model
-Once your training is complete, use the following command to evaluate your model's performance on the test set.
-
-```Bash
-
-python3 evaluate.py \
-    --config configs/synergos_okvqa_eval.yaml \
-    --checkpoint /path/to/your/trained_model.pth
+To evaluate your trained model or our provided checkpoint, run the evaluation script. This will also perform online evidence generation for each test sample.
 ```
-
-Download the used pre-trained model:
-
-Qwen2.5-VL-7B: Link: [https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct]
-T5-large: Link: [https://huggingface.co/google-t5/t5-large]
-LLaVA-1.5-7B: Link: [https://huggingface.co/liuhaotian/llava-v1.5-7b]
-
-
-Run evaluation:
-
-```Bash
-
-python3 evaluate.py \
-    --config configs/synergos_okvqa_eval.yaml \
-    --checkpoint ./checkpoints/synergos_vqa_sota.pth
-This should reproduce the SOTA accuracy reported in our paper's main results table.
+#Ensure your test.sh script is configured with the correct checkpoint path
+bash test.sh
 ```
-## 📓 Demo Notebook
-For an intuitive demonstration of the Synergos-VQA reasoning process, please see notebooks/demo.ipynb. This notebook loads our pre-trained models and provides a step-by-step visualization of how the Holistic, Structural, and Causal evidence streams are generated and fused to produce the final answer for a given image-question pair.
-
-
+## 📂 Project Structure
+```
+synergos_vqa/
+├── checkpoints/              # Directory for model weights and generated libraries
+├── configs/                  # Directory for configuration files
+├── data/                     # Directory for datasets (created by user)
+├── src/                      # Source code
+│   ├── models/               # Model definitions (FiDT5, etc.)
+│   ├── data.py               # Data loading and processing logic
+│   ├── evidence_generator.py # Online evidence generation module
+│   ├── library.py            # Logic for prototype library (generation/usage)
+│   └── util.py               # Utility functions
+├── .gitignore                # Specifies files to ignore for Git
+├── LICENSE                   # Your open-source license (e.g., MIT)
+├── README.md                 # This file
+├── requirements.txt          # Pip dependencies
+├── test.py                   # Main script for evaluation
+├── test.sh                   # Bash script for launching evaluation
+├── train.py                  # Main script for training
+└── train.sh                  # Bash script for launching training
+```
 ## 🤝 Contributing
 We welcome contributions to enhance this project. If you're interested in contributing, please follow these steps:
 
