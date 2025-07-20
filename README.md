@@ -51,10 +51,11 @@ This is the official PyTorch implementation of the paper **"See the Forest and t
 │   ├── fusion_module/      # Implementation of the FiD/T5 fusion module
 │   ├── data_loader.py    # Data loaders
 │   └── utils.py          # Utility functions
-├── checkpoints/          # Directory for saving/loading model weights and prototype library
-├── train.py              # Main script for end-to-end training
-├── evaluate.py           # Main script for end-to-end evaluation
-├── requirements.yaml      # Project dependencies
+├── train.py              # Main script for training
+├── test.py               # Main script for evaluation
+├── train.sh              # Bash script for launching training
+├── test.sh               # Bash script for launching evaluation
+├── requirements.txt      # Project dependencies
 └── README.md             # This file
 ```
 ## ⚙️ Installation
@@ -130,7 +131,10 @@ python3 evaluate.py \
 
 Download the used pre-trained model:
 
-Link: [在此处放置您的 Google Drive, Hugging Face, 或其他可访问的下载链接]
+Qwen2.5-VL-7B: Link: [https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct]
+T5-large: Link: [https://huggingface.co/google-t5/t5-large]
+LLaVA-1.5-7B: Link: [https://huggingface.co/liuhaotian/llava-v1.5-7b]
+
 
 Run evaluation:
 
