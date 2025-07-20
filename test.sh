@@ -1,0 +1,13 @@
+CUDA_VISIBLE_DEVICES=2 python test.py --eval_data processed_data/test.pkl \
+	--model_size large \
+	--per_gpu_batch_size 4 \
+	--num_workers 8 \
+	--box_number 36 \
+	--text_maxlength 500 \
+	--n_im_context 5 \
+	--n_ex_context 40 \
+	--name eval \
+	--model_path checkpoints_two_card/exp/checkpoint/step-20000/ \
+	--n_block 9 \
+	--n_tags 30 \
+        --write_results
