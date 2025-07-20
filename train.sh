@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# 创建日志目录
+
 mkdir -p logs
 
-# 使用nohup运行训练脚本，并将输出重定向到日志文件
 nohup NGPU=2 python -m torch.distributed.launch --nproc_per_node=2 --master_port 10846 train.py \
 	--train_data processed_data/train.pkl \
 	--eval_data processed_data/test.pkl \
@@ -30,6 +29,6 @@ nohup NGPU=2 python -m torch.distributed.launch --nproc_per_node=2 --master_port
 	--total_step 30000 \
 	--warmup_step 2000 > logs/train_$(date +%Y%m%d_%H%M%S).log 2>&1 &
 
-# 输出进程ID
+
 echo "Training started with PID: $!"
 
