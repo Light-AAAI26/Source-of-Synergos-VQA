@@ -2,7 +2,7 @@
 
 This is the official PyTorch implementation of the paper **"See the Forest and the Trees: A Synergistic Reasoning Framework for Knowledge-Based Visual Question Answering"**. This repository contains the complete end-to-end code to reproduce our results, including the online generation of all evidence streams described in our work, this project will be updated more user-friendly persistently.
 
-<img width="5063" height="2527" alt="Fig2" src="https://github.com/user-attachments/assets/1d910920-0264-489a-b274-9427e543bd52" />
+<img width="5063" height="2527" alt="5a1bce1a7dd8aaf34c776f6923775cf" src="https://github.com/user-attachments/assets/7ef82bd4-9c6c-430d-b0d0-5d296ed007a2" />
 
 ## 📋 Table of Contents
 
@@ -37,7 +37,6 @@ Option A: Using venv (Recommended for Simplicity)
 This method uses Python's built-in environment manager.
 
 ```Bash
-
 # Create a virtual environment using Python 3.10
 python3.10 -m venv venv
 
@@ -54,7 +53,6 @@ Option B: Using conda
 If you have Anaconda or Miniconda installed, you can create a conda environment.
 
 ```Bash
-
 # Create a new conda environment named "synergos_vqa" with Python 3.10
 conda create -n synergos_vqa python=3.10 -y
 
@@ -71,7 +69,6 @@ Important: We strongly recommend visiting the official PyTorch website to get th
 For our verified environment (CUDA 12.1), the command is:
 
 ```Bash
-
 # For CUDA 12.1
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
@@ -79,14 +76,12 @@ Step 4: Install Other Dependencies
 Once PyTorch is installed correctly, install all other required packages from the requirements.txt file. Make sure the requirements.txt file is in your root directory.
 
 ```Bash
-
 pip install -r requirements.txt
 ```
 Step 5: Verify the Installation (Optional but Recommended)
 To ensure everything is set up correctly, you can run the following Python commands:
 
 ```Bash
-
 python -c "import torch; print('PyTorch version:', torch.__version__); print('CUDA available:', torch.cuda.is_available()); print('Device name:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'N/A')"
 ```
 You should see an output similar to this, confirming that PyTorch can detect your GPU:
