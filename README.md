@@ -36,7 +36,7 @@ This is the official PyTorch implementation of the paper **"See the Forest and t
 > - **Recommended GPU:** NVIDIA A100 (80GB) or a comparable GPU with at least 48GB of VRAM.
 > - **Recommended RAM:** At least 128GB of system RAM.
 >
-> *48GB is enough to train and evaluate the full Synergos-VQA, if your GPU has a VRAM lower than 40GB, please modify the MLLM parameters to 3B *
+> *48GB is enough to train and evaluate the full Synergos-VQA, if your GPU has a VRAM lower than 40GB, please use the 3B MLLMs as the external engine*
 
 ## 📂 Project Structure
 📂 Synergos-VQA/
