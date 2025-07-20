@@ -2,7 +2,6 @@
 
 This is the official PyTorch implementation of the paper **"See the Forest and the Trees: A Synergistic Reasoning Framework for Knowledge-Based Visual Question Answering"**. This repository contains the complete end-to-end code to reproduce our results, including the online generation of all evidence streams described in our work, this project will be updated more user-friendly persistently.
 
-<img width="5063" height="2527" alt="5a1bce1a7dd8aaf34c776f6923775cf" src="https://github.com/user-attachments/assets/7ef82bd4-9c6c-430d-b0d0-5d296ed007a2" />
 
 ## 📋 Table of Contents
 
