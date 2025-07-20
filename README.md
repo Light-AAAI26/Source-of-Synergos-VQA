@@ -36,7 +36,7 @@ This is the official PyTorch implementation of the paper **"See the Forest and t
 > - **Recommended GPU:** NVIDIA A100 (80GB) or a comparable GPU with at least 48GB of VRAM.
 > - **Recommended RAM:** At least 128GB of system RAM.
 >
-> *For a quick verification of our main results without requiring high-end hardware, you can skip to **Step 4b** and use our provided pre-trained checkpoint for evaluation.*
+> *48GB is enough to train and evaluate the full Synergos-VQA, if your GPU has a VRAM lower than 40GB, please modify the MLLM parameters to 3B *
 
 ## 📂 Project Structure
 📂 Synergos-VQA/
@@ -59,10 +59,6 @@ This is the official PyTorch implementation of the paper **"See the Forest and t
 ## ⚙️ Installation
 
 1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/](https://github.com/)[Your-Anonymous-GitHub-Username]/Synergos-VQA.git
-    cd Synergos-VQA
-    ```
 
 2.  **Create and activate a virtual environment:**
     ```bash
@@ -130,14 +126,10 @@ python3 evaluate.py \
     --config configs/synergos_okvqa_eval.yaml \
     --checkpoint /path/to/your/trained_model.pth
 ```
-4b. Verify SOTA Results with Our Checkpoint
-To directly verify the main results from our paper without training, download our pre-trained model checkpoint and run the evaluation script.
 
-Download our pre-trained model:
+Download the used pre-trained model:
 
 Link: [在此处放置您的 Google Drive, Hugging Face, 或其他可访问的下载链接]
-
-Place the downloaded synergos_vqa_sota.pth file into the ./checkpoints/ directory.
 
 Run evaluation:
 
