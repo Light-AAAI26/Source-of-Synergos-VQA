@@ -1,7 +1,7 @@
 # 🌲 Synergos-VQA 🌳
 
 This is the official PyTorch implementation of the paper **"See the Forest and the Trees: A Synergistic Reasoning Framework for Knowledge-Based Visual Question Answering"**. This repository contains the complete end-to-end code to reproduce our results, including the online generation of all evidence streams described in our work, this project will be updated more user-friendly persistently.
-![Synergistic Reasoning Engine Diagram](Method.jpg)
+<img width="5063" height="2527" alt="Fig2" src="https://github.com/user-attachments/assets/c7eb114e-0ddc-4edc-9788-68518b053dad" />
 
 ## 📋 Table of Contents
 
