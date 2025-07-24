@@ -120,7 +120,7 @@ synergos_vqa/
 │   ├── library.py            # Logic for prototype library (generation/usage)
 │   └── util.py               # Utility functions
 ├── .gitignore                # Specifies files to ignore for Git
-├── LICENSE                   # Your open-source license (e.g., MIT)
+├── LICENSE                   # The open-source license (e.g., MIT)
 ├── README.md                 # This file
 ├── requirements.txt          # Pip dependencies
 ├── test.py                   # Main script for evaluation
