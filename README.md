@@ -90,25 +90,25 @@ Please download the required raw datasets according to our data_README.md (e.g.,
 Step 2: Build the Prototype Library (Offline)
 This step uses the COCO dataset to build the prototype library required for the Structural Backbone Reasoning module.
 
-```
+```bash
 # This script (e.g., library.py or a new pipelines/build_prototype_library.py) 
 # should be run to generate the prototype_library.pkl
 python src/library.py --coco_path ./data/coco --output_path ./checkpoint/prototype_library.pkl
 ```
 Step 3: Train the Full Model
 This command launches the end-to-end training process, which performs online evidence generation for each batch before training the decision module.
-```
+```bash
 # Ensure your train.sh script is configured with the correct paths and parameters
 bash train.sh
 ```
 Step 4: Evaluate the Model
 To evaluate your trained model or our provided checkpoint, run the evaluation script. This will also perform online evidence generation for each test sample.
-```
+```bash
 #Ensure your test.sh script is configured with the correct checkpoint path
 bash test.sh
 ```
 ## 📂 Project Structure
-```
+```bash
 synergos_vqa/
 ├── checkpoints/              # Directory for model weights and generated libraries
 ├── configs/                  # Directory for configuration files
